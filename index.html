@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>O QUE EU SOU</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+        }
+
+        .screen {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 25px;
+        }
+
+        /* PRIMEIRA PÁGINA */
+
+        #imagePage {
+            display: flex;
+        }
+
+        .imageGrid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        .imageButton {
+            border: none;
+            padding: 0;
+            background: transparent;
+            cursor: pointer;
+            aspect-ratio: 1 / 1;
+        }
+
+        .imageButton img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* SEGUNDA PÁGINA */
+
+        #linkPage {
+            display: none;
+            text-align: center;
+        }
+
+        .accessLink {
+            color: white;
+            font-size: 19px;
+            letter-spacing: 3px;
+            text-decoration: underline;
+            text-underline-offset: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .accessLink:hover {
+            color: #aaa;
+        }
+
+        /* CELULARES */
+
+        @media (max-width: 450px) {
+
+            .imageGrid {
+                gap: 7px;
+            }
+
+            .accessLink {
+                font-size: 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- PRIMEIRA PÁGINA: IMAGENS -->
+
+    <div class="screen" id="imagePage">
+
+        <div class="imageGrid" id="imageGrid">
+
+            <!-- AS IMAGENS SERÃO INSERIDAS PELO JAVASCRIPT -->
+
+        </div>
+
+    </div>
+
+
+    <!-- SEGUNDA PÁGINA: LINK -->
+
+    <div class="screen" id="linkPage">
+
+        <a
+            class="accessLink"
+            id="finalLink"
+            href="https://www.google.com"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            HERMAN
+        </a>
+
+    </div>
+
+
+    <script>
+
+        /* PRIMEIRA PÁGINA: IMAGENS */
+
+        const imageGrid = document.getElementById("imageGrid");
+
+        // ALTERE OS NOMES DAS IMAGENS AQUI
+
+        const imagemNormal = "imagem-normal.png";
+        const imagemDiferente = "imagem-diferente.png";
+
+        // 16 imagens, com apenas uma diferente
+
+        let posicaoDiferente = Math.floor(Math.random() * 16);
+
+        for (let i = 0; i < 16; i++) {
+
+            const botao = document.createElement("button");
+
+            botao.className = "imageButton";
+
+            const imagem = document.createElement("img");
+
+            if (i === posicaoDiferente) {
+
+                imagem.src = imagemDiferente;
+
+                botao.addEventListener("click", function() {
+
+                    document.getElementById("imagePage").style.display = "none";
+
+                    document.getElementById("linkPage").style.display = "flex";
+
+                });
+
+            } else {
+
+                imagem.src = imagemNormal;
+
+            }
+
+            botao.appendChild(imagem);
+
+            imageGrid.appendChild(botao);
+
+        }
+
+
+        /* LINK FINAL */
+
+        // ==========================================
+        // ALTERE O ENDEREÇO ABAIXO PELO SEU LINK!
+        // ==========================================
+
+        const meuLink = "https://pt.quizur.com/trivia/o-peso-do-sobrenome-e-inexplicavel-1rFjF";
+
+        document.getElementById("finalLink").href = meuLink;
+
+    </script>
+
+</body>
+
+</html>
